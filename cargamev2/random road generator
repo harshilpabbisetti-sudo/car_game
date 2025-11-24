@@ -1,0 +1,42 @@
+import random
+
+ROWS, COLS = 5, 5
+
+# Directions: up, right, down, left
+dirs = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+max_steps = ROWS * COLS * 4
+loop_generated = False
+
+while not loop_generated:
+
+    grid = [[0 for _ in range(COLS)] for _ in range(ROWS)]
+    start = (0, 1)
+    path = [start]
+    grid[start[1]][start[0]] = 1
+    current = start
+    for _ in range(max_steps):
+        possible_moves = []
+
+        for dx, dy in dirs:
+            nx, ny = current[0] + dx, current[1] + dy
+
+            if 0 <= nx < COLS and 0 <= ny < ROWS:
+                if grid[ny][nx] == 0 or (nx, ny) == start:
+                    possible_moves.append((nx, ny))
+
+        if not possible_moves:
+            break  # stuck → end simulation
+
+        next_cell = random.choice(possible_moves)
+        path.append(next_cell)
+
+        if next_cell == start and len(path) > 4:
+            loop_generated = True
+            break
+
+        grid[next_cell[1]][next_cell[0]] = 1
+        current = next_cell
+
+# Print loop path cells
+print(*grid, sep='\n')
+print(path)
