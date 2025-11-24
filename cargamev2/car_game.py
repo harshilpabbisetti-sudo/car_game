@@ -383,30 +383,45 @@ def positioning_adding(speed, acceleration, angular_velocity):
         cone_list.append([pygame.transform.rotate(pygame.image.load(f'graphics/cones/sprite_{i}.png').convert_alpha(), j) for j in range(360)])
 
     # positioning
-    track = [[2, 1, 2],
-             [1, 0, 1],
-             [2, 1, 2]]
+    track = [[2, 1, 2, 0, 0],
+             [1, 0, 1, 0, 0],
+             [1, 0, 3, 1, 2],
+             [2, 1, 3, 0, 1],
+             [0, 0, 1, 0, 1],
+             [0, 0, 2, 1, 2]]
     track_key = {
         1: straight_road_list,
         2: right_road_list,
         3: left_road_list
     }
 
-    dirn = [[0, 90, 90],
-            [0, '', 0],
-            [270, 90, 180]]
+    dirn = [[0, 90, 90, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 180, 90, 90],
+            [-90, 90, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, -90, 90, 180]]
 
-    fuel_position = [[1, 0, 0],
-                     [0, 0, 0],
-                     [0, 0, 0]]
+    fuel_position = [[1, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 1]]
 
-    hole_position = [[0, 0, 0],
-                     [1, 0, 0],
-                     [0, 0, 0]]
+    hole_position = [[0, 0, 1, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 1, 0, 0]]
 
-    cone_position = [[0, 0, 0],
-                     [0, 0, 0],
-                     [1, 0, 0]]
+    cone_position = [[0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0],
+                     [1, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 1],
+                     [0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0]]
 
     # adding to classes
     background.add(Background(0, 0))
@@ -493,3 +508,4 @@ while True:
 
     pygame.display.update()
     clock.tick(fps)
+
