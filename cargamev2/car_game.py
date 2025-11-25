@@ -461,7 +461,7 @@ screen = pygame.display.set_mode((1080, 540))
 clock = pygame.time.Clock()
 pygame.display.set_caption('Car Game')
 
-font = pygame.font.Font('graphics/font/Pixeltype.ttf', 50)
+font = pygame.font.Font('graphics/font/Pixeltype.ttf', 200)
 
 background = pygame.sprite.Group()
 road = pygame.sprite.Group()
