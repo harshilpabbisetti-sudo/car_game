@@ -461,6 +461,8 @@ screen = pygame.display.set_mode((1080, 540))
 clock = pygame.time.Clock()
 pygame.display.set_caption('Car Game')
 
+font = pygame.font.Font('graphics/font/Pixeltype.ttf', 50)
+
 background = pygame.sprite.Group()
 road = pygame.sprite.Group()
 fuel = pygame.sprite.Group()
@@ -476,6 +478,9 @@ empty_bar = pygame.transform.rotozoom(pygame.image.load('graphics/fuel_bar/empty
 boxes = []
 for i in range(8):
     boxes.append(pygame.transform.rotozoom(pygame.image.load(f'graphics/fuel_bar/boxes/sprite_{i}.png').convert_alpha(), 0, 4))
+
+game_msg = font.render('Game Over', False, (255, 255, 255))
+game_msg_rect = game_msg.get_rect(center = (screen.get_width()/2, screen.get_height()/2))
 
 while True:
     for event in pygame.event.get():
@@ -500,12 +505,13 @@ while True:
     fuel_amt = fuel_bar(fuel_amt, empty_bar, boxes)
 
     drift.update(keys)
-
-    hole.draw(screen)
+    
     hole.update(keys)
 
     cone.update(keys)
 
+    if fuel_amt < 1:
+        screen.blit(game_msg, game_msg_rect)
+
     pygame.display.update()
     clock.tick(fps)
-
